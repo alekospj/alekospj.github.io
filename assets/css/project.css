@@ -2,12 +2,15 @@ html{
   font-family: 'ZCOOL XiaoWei', serif !important;
 }
 .first {
+ 
+  height:700px;
+  color: white;
+}
+
+body{
   background: #FFEFBA;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  background-repeat: no-repeat;
-  background-size: cover;
-  height:700px;
-  color: white;
 }
 
 .first h1 {
@@ -110,10 +113,10 @@ a:hover {
 .what_to_do div {
     padding: 3%;
     color: #222828;
-    background: #FFEFBA;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  background-repeat: no-repeat;
+
 }
+
+
 
 .what_to_do button,.four button{
   background-color: transparent;
@@ -209,6 +212,10 @@ footer {
   padding: 4%;
 }
 
+.container{
+  margin: 25px;
+
+}
 
 /*Cyber button starts here */
 
@@ -263,6 +270,7 @@ body .cybr-btn + .cybr-btn {
 
 .cybr-btn:after,
 .cybr-btn:before {
+  
   content: '';
   position: absolute;
   top: 0;
