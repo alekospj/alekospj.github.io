@@ -8,10 +8,12 @@ html{
 }
 
 body{
-  background: #FFEFBA;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  background-repeat: no-repeat;
+  background: #bdc3c7;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
 }
+
 
 .first h1 {
   color:#222828;
@@ -116,7 +118,11 @@ a:hover {
 
 }
 
+.text-center-vol2{
+  color: #222828;
+  text-align: center;
 
+}
 
 .what_to_do button,.four button{
   background-color: transparent;
@@ -129,14 +135,7 @@ a:hover {
   font-variant: all-petite-caps;
 }
 
-.four {
-  /* background-image: url(images/four.jpeg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 1000px; */
 
-}
 
 .four h1{
   padding: 10%;

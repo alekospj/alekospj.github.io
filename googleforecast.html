@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chess Vizualizer</title>
+    <title>Google Forecasting</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="assets/css/project.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,10 +12,11 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
      <link href="https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei" rel="stylesheet">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
    </head>
    <body>
       <div class="first">
-        <div class="container"><h1>Chess Vizualizer</h1>
+        <div class="container"><h1>Google Forecasting</h1>
 
          <nav class="navbar navbar-expand-sm">
                   <ul class="navbar-nav">
@@ -34,25 +35,31 @@
                   </ul>
            </nav>
          </div>
-         
+
       <div class="message">
-          <div class="container">
-              <h2 class="text-center">Description</h2>
-              <p class="text-center">We build the project with <a class="href-dark" href="https://plotly.com/dash/">Dash</a>  from Plotly</p>
-              <p class="text-center">We used a dataset from kaagle with the rank of each player per country and the results from each different game.
-                In this project we are vizualizing the data according to the selection of the user with a more interactive and efficient to understand way than a 
-                simple document. In this project we want to highlight the functionality of the plotly-dash. With this kind of developement we could make applications in zero time
-                 and share it in our local company network for many users or to 
-                share it on internet with Technologies as Amazon Web Services, Azure etc. For more details you are welcome to deep into code or run the Docker image
-                easily at your prefferable machine.
-              </p>
-          </div>
+        <div class="container">
+            <h2 class="text-center"> <b>Description</b></h2><br>
+            <p class="text-center">
+            In this project we are demonstating the functionality of <b>SARIMA</b> model (<b>S</b>easonal <b>A</b>utoregressive <b>I</b>ntegrated <b>M</b>oving <b>A</b>verage) <br>
+            We are using data from Google Trends, in which we can find the searching score for specific words. We can always upload at the application new files for more studies.
+            The first Tab of the application is working as an observatory for the data selected. First we analyze by year then by month in order to understand 
+            the existance of any trend.
+            
+            In the second tab we can feed the model with the data in an effort to create the best model by manipulating the step of the seasonal analysis. 
+            This projects purpose is to demonstate the deterministic technique of SARIMA, and all the outcoming functionalities comming with an application of this type. 
+            </p>
+
+        </div>
+    </div>
+      <br>
+      <div class="container">
+          <img style="width:100%;"src="images/forecastingGoogle/forecastGIF1.gif">
       </div>
       <br>
       <div class="container">
-          <img style="width:100%;"src="images/chessVisualizer/ChessShow2.gif">
+        <img style="width:100%;"src="images/forecastingGoogle/forecastGIF2.gif">
       </div>
-      <br>
+
       <div class="what_to_do container">
            <h2 class="text-center-vol2">You want to see more?</h2>
            <div class="row container">
@@ -62,7 +69,7 @@
                     <p>Download and run the Docker image of the project</p>
                     <div class="row">
                           <div class="col-12 text-center">
-                            <button type="button"><a href="https://hub.docker.com/repository/docker/alekosxoxlidakis/chess">Docker Repository</a></button>
+                            <button type="button"><a href="https://hub.docker.com/repository/docker/alekosxoxlidakis/googleforecast">Docker Repository</a></button>
                           </div>
                     </div>
                 </div>
@@ -71,17 +78,17 @@
                    <p> You may visit the gihub repository of the projectt</p>
                    <div class="row">
                          <div class="col-12 text-center">
-                           <button type="button"><a href="https://github.com/alekospj/ChessVizualizer">Github Code</a></button>
+                           <button type="button"><a href="https://github.com/alekospj/GoogleForecast">Github Code</a></button>
                          </div>
                    </div>
                 </div>
                 <div class="col-12 col-md-4 col-lg-4 col-xl-4 text-center">
-                  <i class="fab fa-kaggle"></i>
-                  <h3>kaggle</h3>
-                    <p> You can take a closer look from kaggle dataset</p>
+                  <i class="fab fa-google"></i>
+                  <h3>Google Trends</h3>
+                    <p>Easy accesible data from Google Trends, try to download your desired data</p>
                     <div class="row">
                           <div class="col-12 text-center">
-                            <button type="button"><a href="https://www.kaggle.com/hunterklotzburwell/top-chess-players">Dataset</a></button>
+                            <button type="button"><a href="https://trends.google.com/">Dataset</a></button>
                           </div>
                     </div>
                 </div>
@@ -93,6 +100,7 @@
           <div class="container">
                <div class="row">
                      <div class="col-12 text-center">
+                       <!-- <button type="button"><a href="#">Read more</a></button> -->
                         <button type ="button" id = "returm-buttton" class="cybr-btn"">Home<span aria-hidden></span>
                           <span aria-hidden class="cybr-btn__glitch">Return</span>
                         </button>
