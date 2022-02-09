@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSV Files Visualizer</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/project.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css"
+     integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+     <link href="https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei" rel="stylesheet">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+   </head>
+   <body>
+      <div class="first">
+        <div class="container"><h1>CSV Files Visualizer</h1>
+
+         <nav class="navbar navbar-expand-sm">
+                  <ul class="navbar-nav">
+                      <!-- <li class="nav-item active">
+                           <a class="nav-link" href="#">Active</a>
+                       </li>
+                      <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                      </li>
+                      <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                      </li>
+                      <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                      </li> -->
+                  </ul>
+           </nav>
+         </div>
+         
+      <div class="message">
+          <div class="container">
+              <h2 class="text-center">Description</h2>
+              <p class="text-center">We build the project with <a class="href-dark" href="https://plotly.com/dash/">Dash</a>  from Plotly</p>
+              <p class="text-center">In the current application we are implementing a simple concept of a visualization system for csv files containing
+                time-series data. We can upload as many files as we want and then with the simple selection of a dropdown menu to navigate between the different
+                files and react with the graphs. 
+              </p>
+          </div>
+      </div>
+      <br>
+      <div class="container">
+          <img style="width:100%;"src="images/csv_vis/csv_vis_gi.gif">
+      </div>
+      <br>
+      <div class="what_to_do container">
+           <h2 class="text-center-vol2">You want to see more?</h2>
+           <div class="row container">
+                <div class="col-12 col-md-4 col-lg-4 col-xl-4 text-center">
+                  <i class="fab fa-docker"></i>
+                  <h3>Docker</h3>
+                    <p>Download and run the Docker image of the project</p>
+                    <div class="row">
+                          <div class="col-12 text-center">
+                            <button type="button"><a href="https://hub.docker.com/repository/docker/alekosxoxlidakis/csv_vis">Docker Repository</a></button>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 col-xl-4 text-center">
+                  <i class="fab fa-github"></i>                   <h3>Github</h3>
+                   <p> You may visit the gihub repository of the projectt</p>
+                   <div class="row">
+                         <div class="col-12 text-center">
+                           <button type="button"><a href="https://github.com/alekospj/CSV_Visualizer">Github Code</a></button>
+                         </div>
+                   </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-4 col-xl-4 text-center">
+                  <i class="fab fa-kaggle"></i>
+                  <h3>kaggle</h3>
+                    <p>time-series Data sample from Kaagle</p>
+                    <div class="row">
+                          <div class="col-12 text-center">
+                            <button type="button"><a href="https://www.kaggle.com/sumanthvrao/daily-climate-time-series-data">Dataset</a></button>
+                          </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+      <br>
+      <br>
+      <div class="four">
+          <div class="container">
+               <div class="row">
+                     <div class="col-12 text-center">
+                        <button type ="button" id = "returm-buttton" class="cybr-btn">Home<span aria-hidden></span>
+                          <span aria-hidden class="cybr-btn__glitch">Return</span>
+                        </button>
+                     </div>
+               </div>
+          </div>
+      </div>
+      <br>
+      <br>
+      <br>
+ 
+
+      <footer>
+        <ul class="social">
+            <li> <a href="https://github.com/alekospj"><i class="fab fa-github"></i></a>
+            </li>
+            <li> <a href="https://www.linkedin.com/in/alexandros-frangiadoulis-541b27a9/""><i class="fab fa-linkedin"></i></a>
+            </li>
+        </ul>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            document.getElementById("returm-buttton").onclick = function () {
+                location.href = "index.html";
+            };
+        </script>
+      </footer>
+   </body>
+ </html>
