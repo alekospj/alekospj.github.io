@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artistic Portfolio</title>
+    <style>
+        /* Grey Gradient Background */
+        body {
+            background: linear-gradient(to bottom, #2c3e50, #bdc3c7);
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 80px;
+            position: relative;
+        }
+
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item:nth-child(odd) {
+            align-self: flex-start;
+        }
+
+        .gallery-item:nth-child(even) {
+            align-self: flex-end;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .painting-title {
+            margin-top: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        /* White Line Connecting Images */
+        .white-line {
+            position: absolute;
+            width: 5px;
+            background-color: white;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+
+        /* Pop-up Modal */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .popup-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Mobile Responsive Adjustments */
+        @media (max-width: 768px) {
+            .gallery-item {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Φatsali's Gallery</h1>
+        <p>
+            I am Alekos, also known as Fatsalis. My art is an extension of my mind—a visual manifestation of the complexity I navigate in my work with artificial intelligence. In the structured chaos of algorithms and data, I find a paradoxical beauty, and through my drawings, I translate this into something tangible. Each stroke, each line, is a fragment of the intricate systems I work with, deconstructed and reborn through imagination.  
+        </p>
+        
+        <p>
+            For me, drawing is an escape but also a bridge—a space where the rigid logic of AI meets the fluid unpredictability of human creativity. It is a world where circuits become abstract landscapes, where neural networks unravel into surreal structures, and where the cold precision of computation transforms into raw, organic expression. This is my journey, my exploration—where technology and art converge in a dance of form and complexity.
+        </p>
+        
+    </div>
+    
+    <div class="gallery-container">
+        <svg class="white-line-svg"></svg>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="images/portofolio/art_1.jpg" alt="Artwork 1" class="clickable">
+                <div class="painting-title">Somewhere 1884</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/portofolio/art_2.jpg" alt="Artwork 2" class="clickable">
+                <div class="painting-title">Who?</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/portofolio/art_3.jpg" alt="Artwork 3" class="clickable">
+                <div class="painting-title">Misstress</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const images = document.querySelectorAll(".gallery .clickable");
+            const galleryContainer = document.querySelector(".gallery-container");
+
+            // Create white connecting line
+            const line = document.createElement("div");
+            line.classList.add("white-line");
+            galleryContainer.appendChild(line);
+
+            function updateLine() {
+                if (images.length < 2) return;
+
+                let prevRect = images[0].getBoundingClientRect();
+                let path = "";
+
+                for (let i = 1; i < images.length; i++) {
+                    let currRect = images[i].getBoundingClientRect();
+
+                    let startX = prevRect.left + prevRect.width / 2;
+                    let startY = prevRect.bottom + window.scrollY;
+                    let endX = currRect.left + currRect.width / 2;
+                    let endY = currRect.top + window.scrollY;
+
+                    path += `M ${startX},${startY} L ${endX},${endY} `;
+
+                    prevRect = currRect;
+                }
+
+                const svgNS = "http://www.w3.org/2000/svg";
+                let svg = document.querySelector("svg.white-line-svg");
+
+                if (!svg) {
+                    svg = document.createElementNS(svgNS, "svg");
+                    svg.setAttribute("class", "white-line-svg");
+                    svg.setAttribute("width", "100%");
+                    svg.setAttribute("height", "100%");
+                    svg.style.position = "absolute";
+                    svg.style.top = "0";
+                    svg.style.left = "0";
+                    svg.style.zIndex = "-1";
+                    galleryContainer.appendChild(svg);
+                }
+
+                let pathElement = svg.querySelector("path");
+
+                if (!pathElement) {
+                    pathElement = document.createElementNS(svgNS, "path");
+                    pathElement.setAttribute("stroke", "white");
+                    pathElement.setAttribute("stroke-width", "5");
+                    pathElement.setAttribute("fill", "none");
+                    svg.appendChild(pathElement);
+                }
+
+                pathElement.setAttribute("d", path);
+            }
+
+            window.addEventListener("scroll", updateLine);
+            window.addEventListener("resize", updateLine);
+            updateLine();
+
+            images.forEach(img => {
+                img.addEventListener("click", function () {
+                    const popup = document.createElement("div");
+                    popup.classList.add("popup-overlay");
+                    popup.innerHTML = `
+                        <div class="popup-content">
+                            <span class="close-btn">&times;</span>
+                            <img src="${img.src}" alt="Expanded Artwork">
+                        </div>
+                    `;
+                    document.body.appendChild(popup);
+
+                    popup.querySelector(".close-btn").addEventListener("click", function () {
+                        popup.remove();
+                    });
+
+                    popup.addEventListener("click", function (event) {
+                        if (event.target === popup) {
+                            popup.remove();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
