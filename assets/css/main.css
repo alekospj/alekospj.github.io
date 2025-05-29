@@ -3248,3 +3248,9 @@ input, select, textarea {
 		margin-top: 2rem;
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 		}
+
+		.glass-section,
+		.glass-section * {
+			color: #000 !important; /* All text inside .glass-box will be black */
+		}
+

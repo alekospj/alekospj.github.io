@@ -1,0 +1,50 @@
+
+body {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+section {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.row > * {
+    flex: 1 1 calc(50% - 20px);
+    box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+    .row > * {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .row > * {
+        flex: 1 1 100%;
+    }
+
+    body, input, select, textarea {
+        font-size: 14pt;
+    }
+}
