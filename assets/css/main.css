@@ -7,6 +7,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -2576,7 +2577,10 @@ input, select, textarea {
 
 /* Header */
 
+
 	#header {
+		width: 40%;
+   		padding: 6em 3em; /* tighter padding */
 		transform: scale(1.0);
   		transform-origin: top left;
 		display: -moz-flex;
@@ -2686,7 +2690,7 @@ input, select, textarea {
 /* Main */
 
 	#main {
-		margin-left: 35%;
+		margin-left: 40%;
 		max-width: 54em;
 		padding: 8em 4em 4em 4em;
 		width: calc(100% - 35%);
@@ -3253,4 +3257,8 @@ input, select, textarea {
 		.glass-section * {
 			color: #000 !important; /* All text inside .glass-box will be black */
 		}
+
+	.profile-paragraph {
+		color: #444444; /* Darker than default #a2a2a2 */
+	}
 
