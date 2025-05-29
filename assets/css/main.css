@@ -2577,6 +2577,8 @@ input, select, textarea {
 /* Header */
 
 	#header {
+		transform: scale(1.0);
+  		transform-origin: top left;
 		display: -moz-flex;
 		display: -webkit-flex;
 		display: -ms-flex;
@@ -3237,19 +3239,12 @@ input, select, textarea {
 		color: #ffffff;
 	  }
 	  
-.glass-section {
-  background: rgba(255, 255, 255, 0.4); /* Keep light background */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 1rem;
-  padding: 2rem;
-  margin-top: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-
-  color: #111; /* 🔥 Make all text inside black-ish */
-}
-
-.glass-section h2,
-.glass-section p {
-  color: #111 !important; /* Force darker color for headings and subtext */
-}
+	  .glass-section {
+		background: rgba(240, 240, 240, 0.4); /* light grey with transparency */
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px); /* for Safari */
+		border-radius: 1rem;
+		padding: 2rem;
+		margin-top: 2rem;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+		}
