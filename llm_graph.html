@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LLM Graph Explorer</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/project.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-flat.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="first">
+      <div class="container">
+        <h1 style="color: #ffffff;">LLM-Driven Sales Data Explorer</h1>
+        <nav class="navbar navbar-expand-sm">
+            <ul class="navbar-nav"></ul>
+        </nav>
+      </div>
+
+      <div class="container my-5">
+        <div class="p-4" style="background: rgba(0, 0, 0, 0.4); border-radius: 12px; color: #f0f0f0;">
+            <h2 class="text-center mb-4" style="color: #ffffff;">Explore Sales Data Using Language</h2>
+            <p>This project demonstrates how lightweight Hugging Face LLMs can power natural language interfaces for real-world business data exploration. Users type queries like “sales in California in 2017,” and the app intelligently translates that into executable pandas filtering code, visualizing the output as charts with Plotly.</p>
+            <p>Two models are used: one interprets the query into a structured spec (e.g., JSON), and the second generates executable pandas code. The results are grouped and displayed in a dashboard built with Dash and Bootstrap.</p>
+            <p><strong>Note:</strong> This is a proof-of-concept powered by a small open-source model (`gemma-2b-it`), ideal for showcasing LLM integration into data science tools but limited in complexity and ambiguity handling.</p>
+        </div>
+      </div>
+
+      <div class="container text-center my-4">
+        <img class="img-fluid" src="images/llm_graph/q0.png" alt="Main Preview" style="max-width: 75%; border-radius: 10px;">
+      </div>
+
+      <div class="container" style="max-width: 50%;">
+        <div id="carouselGraphExplorer" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="images/llm_graph/q1.png" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="images/llm_graph/q2.png" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="images/llm_graph/q3.png" alt="Slide 3">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="images/llm_graph/q4.png" alt="Slide 4">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="images/llm_graph/q5.png" alt="Slide 5">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="images/llm_graph/q6.png" alt="Slide 6">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselGraphExplorer" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </a>
+          <a class="carousel-control-next" href="#carouselGraphExplorer" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+
+      <br><br>
+      <div class="what_to_do container">
+        <h2 class="text-center-vol2">Explore More</h2>
+        <div class="row container">
+          <div class="col-12 col-md-6 col-lg-6 col-xl-6 text-center">
+            <i class="fab fa-github"></i>
+            <h3>GitHub</h3>
+            <p>Visit the GitHub repository to explore the full source code and documentation.</p>
+            <div class="row">
+              <div class="col-12 text-center">
+                <button type="button"><a href="https://github.com/alekospj/llm_for_graphs">GitHub Code</a></button>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-6 col-xl-6 text-center">
+            <i class="fas fa-robot"></i>
+            <h3>Hugging Face</h3>
+            <p>Model used: <code>google/gemma-2b-it</code> - Small instruction-tuned LLM ideal for demos.</p>
+            <div class="row">
+              <div class="col-12 text-center">
+                <button type="button"><a href="https://huggingface.co/google/gemma-2b-it">Model Page</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br><br>
+      <div class="four">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 text-center">
+              <button type="button" id="return-button" class="cybr-btn">Home<span aria-hidden></span>
+                <span aria-hidden class="cybr-btn__glitch">Return</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <ul class="social">
+            <li><a href="https://github.com/alekospj"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/alexandros-frangiadoulis-541b27a9/"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            document.getElementById("return-button").onclick = function () {
+                location.href = "index.html";
+            };
+        </script>
+      </footer>
+  </body>
+</html>
