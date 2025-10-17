@@ -5,21 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fatsalis Portfolio</title>
     <style>
+        /* CSS Variables for Dynamic Sizing */
+        :root {
+            --container-padding: clamp(10px, 5vw, 40px);
+            --gallery-gap: clamp(40px, 8vw, 120px);
+            --gallery-item-width: clamp(280px, 45vw, 600px);
+            --font-size-h1: clamp(1.8rem, 4vw, 3.5rem);
+            --font-size-title: clamp(1rem, 2.5vw, 1.4rem);
+            --border-radius: clamp(8px, 1.5vw, 15px);
+        }
+
         /* Grey Gradient Background */
         body {
             background: linear-gradient(to bottom, #2c3e50, #bdc3c7);
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: white;
             text-align: center;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
-            padding: 20px;
+            padding: var(--container-padding);
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         h1 {
-            font-size: 2.5em;
+            font-size: var(--font-size-h1);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .container p {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            text-align: justify;
         }
 
         .gallery-container {
@@ -27,29 +51,44 @@
             flex-direction: column;
             align-items: center;
             position: relative;
-            padding: 20px;
+            padding: var(--container-padding);
+            min-height: 100vh;
         }
 
         .gallery {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 80px;
+            gap: var(--gallery-gap);
             position: relative;
+            width: 100%;
+            max-width: 1400px;
         }
 
         .gallery-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 50%;
-            padding: 20px;
+            width: var(--gallery-item-width);
+            max-width: 90vw;
+            padding: clamp(15px, 3vw, 30px);
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             position: relative;
             cursor: pointer;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Dynamic alternating layout based on screen size */
         .gallery-item:nth-child(odd) {
             align-self: flex-start;
         }
@@ -61,19 +100,23 @@
         .gallery img {
             width: 100%;
             height: auto;
-            border-radius: 10px;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: var(--border-radius);
             cursor: pointer;
             transition: transform 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         .gallery img:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         .painting-title {
-            margin-top: 10px;
-            font-size: 1.2em;
+            margin-top: clamp(8px, 2vw, 15px);
+            font-size: var(--font-size-title);
             font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         /* White Line Connecting Images */
@@ -93,42 +136,138 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            backdrop-filter: blur(5px);
         }
 
         .popup-content {
             position: relative;
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 95vw;
+            max-height: 95vh;
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
+            padding: clamp(10px, 3vw, 20px);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .popup-content img {
             width: 100%;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
         }
 
         .close-btn {
             position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 30px;
+            top: clamp(5px, 2vw, 15px);
+            right: clamp(10px, 3vw, 20px);
+            font-size: clamp(24px, 5vw, 40px);
             color: white;
             cursor: pointer;
+            z-index: 1001;
+            transition: color 0.3s ease;
         }
 
-        /* Mobile Responsive Adjustments */
-        @media (max-width: 768px) {
+        .close-btn:hover {
+            color: #ff6b6b;
+        }
+
+        /* Enhanced Responsive Breakpoints */
+        @media (max-width: 1200px) {
             .gallery-item {
-                width: 90%;
+                width: clamp(250px, 50vw, 500px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                gap: clamp(30px, 6vw, 60px);
+            }
+            
+            .gallery-item {
+                width: clamp(200px, 85vw, 400px);
+                padding: clamp(10px, 4vw, 20px);
+            }
+            
+            .gallery-item:nth-child(odd),
+            .gallery-item:nth-child(even) {
+                align-self: center;
+            }
+            
+            .container p {
+                text-align: left;
+                padding: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-item {
+                width: 95vw;
+                max-width: 350px;
+            }
+            
+            .gallery img {
+                max-height: 60vh;
+            }
+            
+            .popup-content {
+                max-width: 98vw;
+                max-height: 98vh;
+                padding: 10px;
+            }
+        }
+
+        /* Landscape orientation adjustments */
+        @media (orientation: landscape) and (max-height: 600px) {
+            .gallery {
+                gap: clamp(20px, 4vh, 40px);
+            }
+            
+            .gallery-item {
+                width: clamp(200px, 40vw, 400px);
+            }
+            
+            .gallery img {
+                max-height: 50vh;
+            }
+        }
+
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .gallery img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .gallery-item,
+            .gallery img,
+            .close-btn {
+                transition: none;
+            }
+            
+            .gallery-item:hover {
+                transform: none;
+            }
+            
+            .gallery img:hover {
+                transform: none;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
             }
         }
     </style>
@@ -149,6 +288,11 @@
     <div class="gallery-container">
         <svg class="white-line-svg"></svg>
         <div class="gallery">
+
+            <div class="gallery-item">
+                <img src="images/portofolio/elepha-dash.jpeg" alt="Artwork 14" class="clickable">
+                <div class="painting-title">Elepha-Dash</div>
+            </div>
 
             <div class="gallery-item">
                 <img src="images/portofolio/serpent.jpeg" alt="Artwork 13" class="clickable">
@@ -201,10 +345,6 @@
                 <div class="painting-title">Space Fruit</div>
             </div>
 
-            <div class="gallery-item">
-                <img src="images/portofolio/art_9.jpg" alt="Artwork 9" class="clickable">
-                <div class="painting-title">Medusa-Vaal</div>
-            </div>
 
             <div class="gallery-item">
                 <img src="images/portofolio/art_10.jpg" alt="Artwork 10" class="clickable">
@@ -219,6 +359,29 @@
         document.addEventListener("DOMContentLoaded", function () {
             const images = document.querySelectorAll(".gallery .clickable");
             const galleryContainer = document.querySelector(".gallery-container");
+
+            // Performance optimization: throttle resize and scroll events
+            let resizeTimeout;
+            let scrollTimeout;
+
+            function throttle(func, delay) {
+                let timeoutId;
+                let lastExecTime = 0;
+                return function (...args) {
+                    const currentTime = Date.now();
+                    
+                    if (currentTime - lastExecTime > delay) {
+                        func.apply(this, args);
+                        lastExecTime = currentTime;
+                    } else {
+                        clearTimeout(timeoutId);
+                        timeoutId = setTimeout(() => {
+                            func.apply(this, args);
+                            lastExecTime = Date.now();
+                        }, delay - (currentTime - lastExecTime));
+                    }
+                };
+            }
 
             // Create white connecting line
             const line = document.createElement("div");
@@ -256,6 +419,7 @@
                     svg.style.top = "0";
                     svg.style.left = "0";
                     svg.style.zIndex = "-1";
+                    svg.style.pointerEvents = "none";
                     galleryContainer.appendChild(svg);
                 }
 
@@ -264,40 +428,112 @@
                 if (!pathElement) {
                     pathElement = document.createElementNS(svgNS, "path");
                     pathElement.setAttribute("stroke", "white");
-                    pathElement.setAttribute("stroke-width", "5");
+                    pathElement.setAttribute("stroke-width", "3");
                     pathElement.setAttribute("fill", "none");
+                    pathElement.setAttribute("opacity", "0.8");
                     svg.appendChild(pathElement);
                 }
 
                 pathElement.setAttribute("d", path);
             }
 
-            window.addEventListener("scroll", updateLine);
-            window.addEventListener("resize", updateLine);
+            // Throttled event listeners for better performance
+            const throttledUpdateLine = throttle(updateLine, 16); // ~60fps
+
+            window.addEventListener("scroll", throttledUpdateLine, { passive: true });
+            window.addEventListener("resize", throttledUpdateLine, { passive: true });
+            
+            // Initial line update
             updateLine();
 
-            images.forEach(img => {
-                img.addEventListener("click", function () {
+            // Enhanced image click handler with better accessibility
+            images.forEach((img, index) => {
+                // Add keyboard accessibility
+                img.setAttribute('tabindex', '0');
+                img.setAttribute('role', 'button');
+                img.setAttribute('aria-label', `View artwork ${index + 1} in full size`);
+
+                function openPopup() {
                     const popup = document.createElement("div");
                     popup.classList.add("popup-overlay");
+                    popup.setAttribute('role', 'dialog');
+                    popup.setAttribute('aria-modal', 'true');
+                    popup.setAttribute('aria-label', 'Artwork viewer');
+                    
                     popup.innerHTML = `
                         <div class="popup-content">
-                            <span class="close-btn">&times;</span>
-                            <img src="${img.src}" alt="Expanded Artwork">
+                            <span class="close-btn" role="button" aria-label="Close artwork viewer">&times;</span>
+                            <img src="${img.src}" alt="Expanded Artwork - ${img.alt}">
                         </div>
                     `;
+                    
                     document.body.appendChild(popup);
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
 
-                    popup.querySelector(".close-btn").addEventListener("click", function () {
+                    const closePopup = () => {
                         popup.remove();
-                    });
+                        document.body.style.overflow = '';
+                        img.focus(); // Return focus to the clicked image
+                    };
 
+                    // Close button event
+                    popup.querySelector(".close-btn").addEventListener("click", closePopup);
+
+                    // Click outside to close
                     popup.addEventListener("click", function (event) {
                         if (event.target === popup) {
-                            popup.remove();
+                            closePopup();
+                        }
+                    });
+
+                    // Keyboard navigation
+                    popup.addEventListener("keydown", function (event) {
+                        if (event.key === 'Escape') {
+                            closePopup();
+                        }
+                    });
+
+                    // Focus the close button for keyboard users
+                    popup.querySelector(".close-btn").focus();
+                }
+
+                // Click event
+                img.addEventListener("click", openPopup);
+
+                // Keyboard event
+                img.addEventListener("keydown", function (event) {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openPopup();
+                    }
+                });
+            });
+
+            // Lazy loading for images (if not already loaded)
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                                observer.unobserve(img);
+                            }
                         }
                     });
                 });
+
+                images.forEach(img => {
+                    if (img.dataset.src) {
+                        imageObserver.observe(img);
+                    }
+                });
+            }
+
+            // Handle orientation change
+            window.addEventListener('orientationchange', function() {
+                setTimeout(updateLine, 100); // Small delay to ensure layout is updated
             });
         });
     </script>
