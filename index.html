@@ -53,6 +53,38 @@
 				line-height: 1.7;
 			}
 
+			.cta-links {
+				margin-top: 1rem;
+				gap: 0.6rem;
+			}
+
+			.cta-links .button {
+				width: 100%;
+			}
+
+			.case-list {
+				margin: 0.5rem 0 0.5rem 1.2rem;
+			}
+
+			.case-list li {
+				margin-bottom: 0.35rem;
+			}
+
+			.project-links {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				margin-top: 0.5rem;
+				align-items: center;
+			}
+
+			.project-links .button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 44px;
+			}
+
 			/* Enhanced Main Content */
 			#main {
 				margin-left: var(--main-margin);
@@ -332,9 +364,16 @@
 			<header id="header">
 				<div class="inner">
 					<a href="#" class="image avatar"><img src="images/alex_2.JPG" alt="" /></a>
-					<p>Hi, my name is <strong>Alexandros Frangiadoulis</strong>.<br>
-						I'm a Senior Data Scientist working in Zurich, focused on advanced analytics, forecasting, and media data solutions for the luxury watch industry.<br>
-						This is my portfolio, where you can explore selected projects that reflect my expertise.</p>
+					<p><strong>Alexandros Frangiadoulis</strong><br>
+						Senior Data Scientist | Applied AI<br>
+						Production ML, forecasting, and Databricks/Azure pipelines that move from notebooks to monitored products.<br>
+						Product-oriented analytics with LLM systems (OpenAI API, LangChain, RAG) that turn knowledge into tools teams can trust.</p>
+					<ul class="actions stacked cta-links">
+						<li><a href="assets/files/CV.pdf" download class="button primary fit small">Download CV (PDF)</a></li>
+						<li><a href="https://www.linkedin.com/in/alexandros-frangiadoulis-541b27a9/" class="button fit small">LinkedIn</a></li>
+						<li><a href="https://github.com/alekospj" class="button fit small">GitHub</a></li>
+						<li><a href="mailto:alexandrosfrang@gmail.com" class="button fit small">Email</a></li>
+					</ul>
 				</div>
 				
 			</header>
@@ -367,9 +406,7 @@
 							My motivation isn’t just answering the right questions with data—it's empowering machines to understand the questions we didn’t yet think to ask.
 						</p> -->
 						<p class="profile-paragraph">
-							Senior Data Scientist & Software Engineer based in Zurich, driving innovation in the luxury watch industry. I lead forecasting systems, integrate predictive analytics into business operations, and manage real-time media data to guide strategy and marketing.
-
-							I'm deeply enthusiastic about LLMs and their ability to turn natural language into action. From automating data insights to building AI-driven tools, I see LLMs as a new layer of intelligence that reshapes how we interact with data.
+							Senior Data Scientist | Applied AI delivering production models, forecasting, and product analytics. I lead end-to-end delivery across Databricks and Azure pipelines, from data modeling to CI/monitoring. Recent work spans revenue and demand forecasting, LLM assistants with OpenAI/LangChain/RAG, and experimentation frameworks that translate data into product decisions.
 						</p>
 							
 
@@ -380,69 +417,158 @@
 						</ul> -->
 					</section>
 
-				<!-- Two -->
-					<section id="two">
-						<h2>Related Work</h2>
+				<!-- Featured -->
+					<section id="featured-projects">
+						<header class="major">
+							<h2>Featured Projects</h2>
+						</header>
 						<div class="row">
 
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/llm_graph/q0.png" class="image fit thumb"><img src="images/llm_graph/q0.png" alt="" /></a>
-								<h3>Querry Data with LLMs</h3>
-								<p>This project demonstrates how lightweight Hugging Face LLMs can be used to power a natural language interface for sales data exploration. Users can input free-text queries like “sales in California in 2017,” and the system intelligently parses, filters, and visualizes the results using Python, Pandas, and Plotly — all within a clean Dash interface.</p>
-								<a href="/llm_graph.html">Read more</a>
-
+							<article class="col-12 col-12-xsmall work-item">
+								<a href="images/llm_graph/q0.png" class="image fit thumb"><img src="images/llm_graph/q0.png" alt="LLM analytics copilot" /></a>
+								<h3>LLM Analytics Copilot</h3>
+								<p><strong>Problem:</strong> Business partners needed natural-language access to sales and pricing data without relying on ad-hoc SQL.</p>
+								<ul class="case-list">
+									<li><strong>Approach:</strong> Built a guarded prompt flow that translates questions into filtered queries and Plotly visuals inside Dash.</li>
+									<li><strong>Stack:</strong> Python, Dash, Pandas/Plotly, Hugging Face LLMs.</li>
+									<li><strong>Outcome:</strong> Self-serve insights and faster exploratory analysis for commercial reviews.</li>
+								</ul>
+								<div class="project-links">
+									<a href="/llm_graph.html" class="button small">Live Demo</a>
+									<a href="https://github.com/alekospj/alekospj.github.io" class="button small">Code</a>
+								</div>
 							</article>
 
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/llm_chat/q1.png" class="image fit thumb"><img src="images/llm_chat/q1.png" alt="" /></a>
-								<h3>LLM Chat with CV information</h3>
-								<p>At this project, we showcase the use of Hugging Face's LLMs to create a chat application that can answer questions about my CV.
-								</p>
-								<a href="/llm_chat.html">Read more</a>
-
+							<article class="col-12 col-12-xsmall work-item">
+								<a href="images/forecastingGoogle/firstTab.png" class="image fit thumb"><img src="images/forecastingGoogle/firstTab.png" alt="Demand forecasting workbench" /></a>
+								<h3>Demand Forecasting Workbench</h3>
+								<p><strong>Problem:</strong> Needed a transparent way to prototype and compare demand scenarios using Google Trends signals.</p>
+								<ul class="case-list">
+									<li><strong>Approach:</strong> Interactive UI to tune SARIMA configurations, backtest, and visualize forecasts for multiple markets.</li>
+									<li><strong>Stack:</strong> Python, Dash, Plotly, Statsmodels.</li>
+									<li><strong>Outcome:</strong> Reduced iteration time for demand plans and gave stakeholders clear forecast explainability.</li>
+								</ul>
+								<div class="project-links">
+									<a href="/googleforecast.html" class="button small">Live Demo</a>
+									<a href="https://github.com/alekospj/alekospj.github.io" class="button small">Code</a>
+								</div>
 							</article>
 
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/mongoTool/mongo1.png" class="image fit thumb"><img src="images/mongoTool/mongo1.png" alt="" /></a>
-								<h3>MongoDB Tool</h3>
-								<p>At this project we are presenting the functionality of MongoDB database in communication with our python scripts encapsulated in 
-									Dash application. 
-								</p>
-								<a href="/mongoTool.html">Read more</a>
-
-							</article>
-
-
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/chessVisualizer/Frontpage.PNG" class="image fit thumb"><img src="images/chessVisualizer/Frontpage.PNG" alt="" /></a>
-								<h3>Chess Data Vizualizer</h3>
-								<p>In this project we developing a dash application for vizualization and interaction of the chess data from kaggle</p>
-								<a href="/chesspro.html">Read more</a>
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/forecastingGoogle/firstTab.png" class="image fit thumb"><img src="images/forecastingGoogle/firstTab.png" alt="" /></a>
-								<h3>Google Trends Forecasting</h3>
-								<p>At the project specified, we are developing an interactive web application with the use of Dash, that aims to train a SARIMA model with
-									the best posible way.
-								</p>
-								<a href="/googleforecast.html">Read more</a>
-
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/csv_vis/chess_vis_1.png" class="image fit thumb"><img src="images/csv_vis/chess_vis_1.png" alt="" /></a>
-								<h3>CSV Files Visualizer</h3>
-								<p>In the present project we implementing a simple idea of a dash application, in which we can upload .csv files and
-									visualize all the columns as timeseries.
-								</p>
-								<a href="/csv_vis.html">Read more</a>
-
+							<article class="col-12 col-12-xsmall work-item">
+								<a href="images/llm_chat/q1.png" class="image fit thumb"><img src="images/llm_chat/q1.png" alt="LLM CV Q&A" /></a>
+								<h3>LLM CV Q&A</h3>
+								<p><strong>Problem:</strong> Turn my CV into a responsive Q&A experience so recruiters get fast, tailored answers.</p>
+								<ul class="case-list">
+									<li><strong>Approach:</strong> Ingested CV content into a retrieval pipeline and used LLM prompts with guardrails to keep answers grounded.</li>
+									<li><strong>Stack:</strong> Python, Hugging Face LLMs, retrieval-augmented generation.</li>
+									<li><strong>Outcome:</strong> Reliable responses that highlight relevant experience within a few turns.</li>
+								</ul>
+								<div class="project-links">
+									<a href="/llm_chat.html" class="button small">Live Demo</a>
+									<a href="https://github.com/alekospj/alekospj.github.io" class="button small">Code</a>
+								</div>
 							</article>
 
 						</div>
+					</section>
+
+				<!-- Two -->
+					<section id="two">
+						<h2>Related Work</h2>
+						
+					<div class="row">
+
+						<article class="col-6 col-12-xsmall work-item">
+							<a href="images/llm_graph/q0.png" class="image fit thumb"><img src="images/llm_graph/q0.png" alt="" /></a>
+							<h3>Query Data with LLMs</h3>
+							<ul class="case-list">
+								<li><strong>Problem:</strong> Enable business teams to explore sales data in natural language without manual SQL.</li>
+								<li><strong>Approach:</strong> Lightweight Hugging Face model interprets prompts, builds filters, and renders tables/visuals in Dash.</li>
+								<li><strong>Stack:</strong> Python, Pandas, Plotly Dash, Hugging Face LLMs.</li>
+								<li><strong>Outcome:</strong> Cuts ad-hoc analysis time and keeps insights consistent across teams.</li>
+							</ul>
+							<div class="project-links">
+								<a href="/llm_graph.html" class="button small">Live Demo</a>
+								<a href="https://github.com/alekospj/alekospj.github.io" class="button small">Code</a>
+							</div>
+						</article>
+
+						<article class="col-6 col-12-xsmall work-item">
+							<a href="images/llm_chat/q1.png" class="image fit thumb"><img src="images/llm_chat/q1.png" alt="" /></a>
+							<h3>LLM Chat with CV information</h3>
+							<ul class="case-list">
+								<li><strong>Problem:</strong> Give recruiters and hiring managers instant answers grounded in my CV.</li>
+								<li><strong>Approach:</strong> Embedded CV content, retrieval pipeline, and prompt guardrails to return concise, relevant replies.</li>
+								<li><strong>Stack:</strong> Python, Hugging Face LLMs, retrieval-augmented generation.</li>
+								<li><strong>Outcome:</strong> Focused responses that surface the most relevant experience for each query.</li>
+							</ul>
+							<div class="project-links">
+								<a href="/llm_chat.html" class="button small">Live Demo</a>
+								<a href="https://github.com/alekospj/alekospj.github.io" class="button small">Code</a>
+							</div>
+						</article>
+
+						<article class="col-6 col-12-xsmall work-item">
+							<a href="images/mongoTool/mongo1.png" class="image fit thumb"><img src="images/mongoTool/mongo1.png" alt="" /></a>
+							<h3>MongoDB Tool</h3>
+							<ul class="case-list">
+								<li><strong>Problem:</strong> Simplify checking MongoDB collections for data quality and quick operational queries.</li>
+								<li><strong>Approach:</strong> Dash UI connects to Mongo, enables browsing documents, and runs parameterized queries.</li>
+								<li><strong>Stack:</strong> Python, Dash, MongoDB, Plotly.</li>
+								<li><strong>Outcome:</strong> Faster debugging of pipelines and clearer demos for stakeholders.</li>
+							</ul>
+							<div class="project-links">
+								<a href="/mongoTool.html" class="button small">Live Demo</a>
+								<a href="https://github.com/alekospj/alekospj.github.io" class="button small">Code</a>
+							</div>
+						</article>
+
+						<article class="col-6 col-12-xsmall work-item">
+							<a href="images/chessVisualizer/Frontpage.PNG" class="image fit thumb"><img src="images/chessVisualizer/Frontpage.PNG" alt="" /></a>
+							<h3>Chess Data Vizualizer</h3>
+							<ul class="case-list">
+								<li><strong>Problem:</strong> Explore the Kaggle chess games dataset without manual notebook work.</li>
+								<li><strong>Approach:</strong> Built dashboards for openings, outcomes, and player trends with interactive filters.</li>
+								<li><strong>Stack:</strong> Python, Pandas, Plotly Dash.</li>
+								<li><strong>Outcome:</strong> Surfaces patterns and insights for analysis or content creation.</li>
+							</ul>
+							<div class="project-links">
+								<a href="/chesspro.html" class="button small">Live Demo</a>
+								<a href="https://github.com/alekospj/alekospj.github.io" class="button small">Code</a>
+							</div>
+						</article>
+
+						<article class="col-6 col-12-xsmall work-item">
+							<a href="images/forecastingGoogle/firstTab.png" class="image fit thumb"><img src="images/forecastingGoogle/firstTab.png" alt="" /></a>
+							<h3>Google Trends Forecasting</h3>
+							<ul class="case-list">
+								<li><strong>Problem:</strong> Prototype search-driven demand forecasts with transparent parameter tuning.</li>
+								<li><strong>Approach:</strong> Interactive SARIMA configuration, backtesting, and Plotly overlays for multiple scenarios.</li>
+								<li><strong>Stack:</strong> Python, Dash, Plotly, Statsmodels.</li>
+								<li><strong>Outcome:</strong> Repeatable forecasts and model comparisons stakeholders can inspect.</li>
+							</ul>
+							<div class="project-links">
+								<a href="/googleforecast.html" class="button small">Live Demo</a>
+								<a href="https://github.com/alekospj/alekospj.github.io" class="button small">Code</a>
+							</div>
+						</article>
+
+						<article class="col-6 col-12-xsmall work-item">
+							<a href="images/csv_vis/chess_vis_1.png" class="image fit thumb"><img src="images/csv_vis/chess_vis_1.png" alt="" /></a>
+							<h3>CSV Files Visualizer</h3>
+							<ul class="case-list">
+								<li><strong>Problem:</strong> Quickly inspect uploaded CSV files and spot trends across time series columns.</li>
+								<li><strong>Approach:</strong> Upload UI that profiles each column and auto-creates time series charts.</li>
+								<li><strong>Stack:</strong> Python, Dash, Plotly, Pandas.</li>
+								<li><strong>Outcome:</strong> Speeds data sanity checks and sharing with non-technical stakeholders.</li>
+							</ul>
+							<div class="project-links">
+								<a href="/csv_vis.html" class="button small">Live Demo</a>
+								<a href="https://github.com/alekospj/alekospj.github.io" class="button small">Code</a>
+							</div>
+						</article>
+
+					</div>
 						<ul class="actions">
 							<li><a href="#" class="button">Full Portfolio</a></li>
 						</ul>
