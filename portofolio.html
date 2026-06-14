@@ -239,11 +239,10 @@
             }
         }
 
-        /* High DPI displays */
+        /* High DPI displays — keep photos smooth (crisp-edges breaks JPEG rendering) */
         @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
             .gallery img {
-                image-rendering: -webkit-optimize-contrast;
-                image-rendering: crisp-edges;
+                image-rendering: auto;
             }
         }
 
@@ -290,22 +289,22 @@
         <div class="gallery">
 
             <div class="gallery-item">
-                <img src="images/portofolio/thumbs/marinero.jpg" data-full="images/portofolio/display/marinero.jpg" alt="Marinero" class="clickable" loading="lazy">
+                <img src="images/portofolio/thumbs/marinero.jpg?v=2" data-full="images/portofolio/display/marinero.jpg?v=2" alt="Marinero" class="clickable" width="376" height="600" loading="eager" decoding="async">
                 <div class="painting-title">Marinero</div>
             </div>
 
             <div class="gallery-item">
-                <img src="images/portofolio/thumbs/tear.jpg" data-full="images/portofolio/display/tear.jpg" alt="Tear" class="clickable" loading="lazy">
+                <img src="images/portofolio/thumbs/tear.jpg?v=2" data-full="images/portofolio/display/tear.jpg?v=2" alt="Tear" class="clickable" width="449" height="600" loading="eager" decoding="async">
                 <div class="painting-title">Tear</div>
             </div>
 
             <div class="gallery-item">
-                <img src="images/portofolio/thumbs/heart.jpg" data-full="images/portofolio/display/heart.jpg" alt="Heart" class="clickable" loading="lazy">
+                <img src="images/portofolio/thumbs/heart.jpg?v=2" data-full="images/portofolio/display/heart.jpg?v=2" alt="Heart" class="clickable" width="450" height="600" loading="eager" decoding="async">
                 <div class="painting-title">Heart</div>
             </div>
 
             <div class="gallery-item">
-                <img src="images/portofolio/thumbs/hug.jpg" data-full="images/portofolio/display/hug.jpg" alt="Hug" class="clickable" loading="lazy">
+                <img src="images/portofolio/thumbs/hug.jpg?v=2" data-full="images/portofolio/display/hug.jpg?v=2" alt="Hug" class="clickable" width="452" height="600" loading="eager" decoding="async">
                 <div class="painting-title">Hug</div>
             </div>
 
@@ -521,6 +520,15 @@
 
             // Enhanced image click handler with better accessibility
             images.forEach((img, index) => {
+                // Fallback: if thumb fails (e.g. stale cache), try full display image
+                img.addEventListener("error", function onThumbError() {
+                    const full = img.dataset.full;
+                    if (full && img.src !== full && !img.dataset.fallbackTried) {
+                        img.dataset.fallbackTried = "1";
+                        img.src = full;
+                    }
+                }, { once: true });
+
                 // Add keyboard accessibility
                 img.setAttribute('tabindex', '0');
                 img.setAttribute('role', 'button');
