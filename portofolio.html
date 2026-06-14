@@ -3,618 +3,540 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fatsalis Portfolio</title>
+    <meta name="description" content="Φatsalis — selected works by Alekos Frangiadoulis. Abstract drawing, mythology, and systems of controlled chaos.">
+    <meta name="theme-color" content="#f7f5f0">
+    <title>Φatsalis</title>
     <style>
-        /* CSS Variables for Dynamic Sizing */
         :root {
-            --container-padding: clamp(10px, 5vw, 40px);
-            --gallery-gap: clamp(40px, 8vw, 120px);
-            --gallery-item-width: clamp(280px, 45vw, 600px);
-            --font-size-h1: clamp(1.8rem, 4vw, 3.5rem);
-            --font-size-title: clamp(1rem, 2.5vw, 1.4rem);
-            --border-radius: clamp(8px, 1.5vw, 15px);
+            --wall: #f7f5f0;
+            --ink: #141414;
+            --muted: #5c5c5c;
+            --rule: #ddd8cf;
+            --max: 1080px;
+            --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+            --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
 
-        /* Grey Gradient Background */
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background: linear-gradient(to bottom, #2c3e50, #bdc3c7);
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
+            background: var(--wall);
+            color: var(--ink);
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: var(--rule);
+            text-underline-offset: 0.2em;
+            transition: text-decoration-color 0.2s ease;
+        }
+
+        a:hover, a:focus-visible {
+            text-decoration-color: var(--ink);
+        }
+
+        a:focus-visible, button:focus-visible {
+            outline: 1px solid var(--ink);
+            outline-offset: 3px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            z-index: 2000;
+            padding: 0.5rem 0.75rem;
+            background: var(--ink);
+            color: var(--wall);
+            font-size: 0.875rem;
+            text-decoration: none;
+        }
+
+        .skip-link:focus { top: 1rem; }
+
+        .wrap {
+            width: min(100% - 3rem, var(--max));
+            margin-inline: auto;
+        }
+
+        /* ── Intro ── */
+        .intro {
+            padding: clamp(4rem, 12vw, 7rem) 0 clamp(3rem, 8vw, 5rem);
             text-align: center;
-            min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        .container {
-            padding: var(--container-padding);
-            max-width: 1200px;
-            margin: 0 auto;
+        .intro__name {
+            margin: 0;
+            font-family: var(--serif);
+            font-size: clamp(2.75rem, 7vw, 4.5rem);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            line-height: 1.1;
         }
 
-        h1 {
-            font-size: var(--font-size-h1);
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        .intro__statement {
+            margin: clamp(2rem, 5vw, 3rem) auto 0;
+            max-width: 34rem;
+            font-family: var(--serif);
+            font-size: clamp(1rem, 2.2vw, 1.125rem);
+            line-height: 1.75;
+            color: var(--muted);
+            text-align: left;
         }
 
-        .container p {
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto 1.5rem;
-            text-align: justify;
+        .intro__statement p {
+            margin: 0;
         }
 
-        .gallery-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            padding: var(--container-padding);
-            min-height: 100vh;
+        .intro__statement p + p {
+            margin-top: 1.25rem;
         }
 
-        .gallery {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: var(--gallery-gap);
-            position: relative;
+        /* ── Works ── */
+        .works {
+            padding-bottom: clamp(4rem, 10vw, 6rem);
+        }
+
+        .works__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .work {
+            margin: 0;
+        }
+
+        .work__open {
+            display: block;
             width: 100%;
-            max-width: 1400px;
-        }
-
-        .gallery-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: var(--gallery-item-width);
-            max-width: 90vw;
-            padding: clamp(15px, 3vw, 30px);
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius);
-            position: relative;
+            padding: 0;
+            border: none;
+            background: none;
             cursor: pointer;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            color: inherit;
+            font: inherit;
         }
 
-        .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        /* Dynamic alternating layout based on screen size */
-        .gallery-item:nth-child(odd) {
-            align-self: flex-start;
-        }
-
-        .gallery-item:nth-child(even) {
-            align-self: flex-end;
-        }
-
-        .gallery img {
+        .work__open img {
+            display: block;
             width: 100%;
             height: auto;
-            max-height: 70vh;
-            object-fit: contain;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            vertical-align: middle;
         }
 
-        .gallery img:hover {
-            transform: scale(1.02);
+        .work__label {
+            margin: 0.875rem 0 0;
+            font-family: var(--serif);
+            font-size: 0.9375rem;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            color: var(--ink);
         }
 
-        .painting-title {
-            margin-top: clamp(8px, 2vw, 15px);
-            font-size: var(--font-size-title);
-            font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        /* White Line Connecting Images */
-        .white-line {
-            position: absolute;
-            width: 5px;
-            background-color: white;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: -1;
-        }
-
-        /* Pop-up Modal */
-        .popup-overlay {
+        /* ── Lightbox ── */
+        .viewer {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            inset: 0;
             z-index: 1000;
-            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            background: rgba(10, 10, 10, 0.96);
         }
 
-        .popup-content {
-            position: relative;
-            max-width: 95vw;
-            max-height: 95vh;
-            background: rgba(255, 255, 255, 0.1);
-            padding: clamp(10px, 3vw, 20px);
-            border-radius: var(--border-radius);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+        .viewer[hidden] { display: none; }
 
-        .popup-content img {
-            width: 100%;
-            height: auto;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: var(--border-radius);
-            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: clamp(5px, 2vw, 15px);
-            right: clamp(10px, 3vw, 20px);
-            font-size: clamp(24px, 5vw, 40px);
-            color: white;
+        .viewer__close {
+            position: fixed;
+            top: 1.25rem;
+            right: 1.5rem;
+            padding: 0.25rem;
+            border: none;
+            background: none;
+            color: rgba(255, 255, 255, 0.55);
+            font-family: var(--sans);
+            font-size: 1.75rem;
+            line-height: 1;
             cursor: pointer;
-            z-index: 1001;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
         }
 
-        .close-btn:hover {
-            color: #ff6b6b;
+        .viewer__close:hover,
+        .viewer__close:focus-visible {
+            color: #fff;
         }
 
-        /* Enhanced Responsive Breakpoints */
-        @media (max-width: 1200px) {
-            .gallery-item {
-                width: clamp(250px, 50vw, 500px);
-            }
+        .viewer__img {
+            display: block;
+            max-width: min(92vw, 960px);
+            max-height: calc(100vh - 6rem);
+            width: auto;
+            height: auto;
+            object-fit: contain;
         }
 
-        @media (max-width: 768px) {
-            .gallery {
-                gap: clamp(30px, 6vw, 60px);
-            }
-            
-            .gallery-item {
-                width: clamp(200px, 85vw, 400px);
-                padding: clamp(10px, 4vw, 20px);
-            }
-            
-            .gallery-item:nth-child(odd),
-            .gallery-item:nth-child(even) {
-                align-self: center;
-            }
-            
-            .container p {
-                text-align: left;
-                padding: 0 10px;
-            }
+        .viewer__caption {
+            margin: 1.25rem 0 0;
+            font-family: var(--serif);
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.02em;
         }
 
-        @media (max-width: 480px) {
-            .gallery-item {
-                width: 95vw;
-                max-width: 350px;
-            }
-            
-            .gallery img {
-                max-height: 60vh;
-            }
-            
-            .popup-content {
-                max-width: 98vw;
-                max-height: 98vh;
-                padding: 10px;
-            }
+        /* ── Footer ── */
+        .contact {
+            padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(3rem, 8vw, 5rem);
+            border-top: 1px solid var(--rule);
+            text-align: center;
         }
 
-        /* Landscape orientation adjustments */
-        @media (orientation: landscape) and (max-height: 600px) {
-            .gallery {
-                gap: clamp(20px, 4vh, 40px);
-            }
-            
-            .gallery-item {
-                width: clamp(200px, 40vw, 400px);
-            }
-            
-            .gallery img {
-                max-height: 50vh;
-            }
+        .contact__text {
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--muted);
+            letter-spacing: 0.01em;
         }
 
-        /* High DPI displays — keep photos smooth (crisp-edges breaks JPEG rendering) */
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            .gallery img {
-                image-rendering: auto;
-            }
+        .contact__email {
+            display: inline-block;
+            margin-top: 0.75rem;
+            font-family: var(--serif);
+            font-size: 1rem;
+            text-decoration: none;
         }
 
-        /* Reduced motion for accessibility */
+        .contact__email:hover,
+        .contact__email:focus-visible {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 680px) {
+            .wrap { width: min(100% - 2rem, var(--max)); }
+            .works__grid { grid-template-columns: 1fr; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
-            .gallery-item,
-            .gallery img,
-            .close-btn {
-                transition: none;
-            }
-            
-            .gallery-item:hover {
-                transform: none;
-            }
-            
-            .gallery img:hover {
-                transform: none;
-            }
-        }
-
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
-            }
+            html { scroll-behavior: auto; }
+            a, .viewer__close { transition: none; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Φatsali's Portofolio</h1>
-        <p>
-            I am Alekos, also known as Fatsalis. My art is an extension of my mind—a visual manifestation of the complexity I navigate in my work with artificial intelligence. In the structured chaos of algorithms and data, I find a paradoxical beauty, and through my drawings, I translate this into something tangible. Each stroke, each line, is a fragment of the intricate systems I work with, deconstructed and reborn through imagination.  
-        </p>
-        
-        <p>
-            For me, drawing is an escape but also a bridge—a space where the rigid logic of AI meets the fluid unpredictability of human creativity. It is a world where circuits become abstract landscapes, where neural networks unravel into surreal structures, and where the cold precision of computation transforms into raw, organic expression. This is my journey, my exploration—where technology and art converge in a dance of form and complexity.
-        </p>
-        
-    </div>
-    
-    <div class="gallery-container">
-        <svg class="white-line-svg"></svg>
-        <div class="gallery">
+    <a class="skip-link" href="#works">Skip to works</a>
 
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/marinero.jpg?v=2" data-full="images/portofolio/display/marinero.jpg?v=2" alt="Marinero" class="clickable" width="376" height="600" loading="eager" decoding="async">
-                <div class="painting-title">Marinero</div>
+    <header class="intro">
+        <div class="wrap">
+            <h1 class="intro__name">Φatsalis</h1>
+            <div class="intro__statement">
+                <p>I am Alekos, also known as Φatsalis. My work explores the space where artificial intelligence, human emotion, mythology, and abstract imagination meet.</p>
+                <p>Working with data and algorithms shapes the way I understand complexity. Drawing allows me to translate that complexity into something raw, visual, and human. Each line becomes part of a system: part circuit, part memory, part dream. Through these works, neural structures, mythological figures, organic forms, and surreal machines merge into a language of controlled chaos.</p>
             </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/tear.jpg?v=2" data-full="images/portofolio/display/tear.jpg?v=2" alt="Tear" class="clickable" width="449" height="600" loading="eager" decoding="async">
-                <div class="painting-title">Tear</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/heart.jpg?v=2" data-full="images/portofolio/display/heart.jpg?v=2" alt="Heart" class="clickable" width="450" height="600" loading="eager" decoding="async">
-                <div class="painting-title">Heart</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/hug.jpg?v=2" data-full="images/portofolio/display/hug.jpg?v=2" alt="Hug" class="clickable" width="452" height="600" loading="eager" decoding="async">
-                <div class="painting-title">Hug</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/little_fish.jpg" data-full="images/portofolio/display/little_fish.jpg" alt="Little Fish" class="clickable" loading="lazy">
-                <div class="painting-title">Little Fish</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/traveler_t.jpg" data-full="images/portofolio/display/traveler_t.jpg" alt="Traveler T" class="clickable" loading="lazy">
-                <div class="painting-title">Traveler T</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/prometheus.jpg" data-full="images/portofolio/display/prometheus.jpg" alt="Prometheus" class="clickable" loading="lazy">
-                <div class="painting-title">Prometheus</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/no_name_2.jpg" data-full="images/portofolio/display/no_name_2.jpg" alt="No name 2" class="clickable" loading="lazy">
-                <div class="painting-title">No name</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/no_name.jpg" data-full="images/portofolio/display/no_name.jpg" alt="No name" class="clickable" loading="lazy">
-                <div class="painting-title">No name</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/daphne.jpg" data-full="images/portofolio/display/daphne.jpg" alt="Daphne" class="clickable" loading="lazy">
-                <div class="painting-title">Daphne</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/cyber_myth.jpg" data-full="images/portofolio/display/cyber_myth.jpg" alt="Cyber Myth" class="clickable" loading="lazy">
-                <div class="painting-title">Cyber Myth</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/anvil_vuetufu.jpg" data-full="images/portofolio/display/anvil_vuetufu.jpg" alt="Anvil Vuetufu" class="clickable" loading="lazy">
-                <div class="painting-title">Anvil Vuetufu</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/strange_sea.jpg" data-full="images/portofolio/display/strange_sea.jpg" alt="Strange Sea" class="clickable" loading="lazy">
-                <div class="painting-title">Strange Sea</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/city_poison.jpg" data-full="images/portofolio/display/city_poison.jpg" alt="City's Poison" class="clickable" loading="lazy">
-                <div class="painting-title">City's Poison</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/hippo.jpg" data-full="images/portofolio/display/hippo.jpg" alt="Not a Happy Hippo" class="clickable" loading="lazy">
-                <div class="painting-title">Not a Happy Hippo</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/elepha-dash.jpg" data-full="images/portofolio/display/elepha-dash.jpg" alt="Elepha-Dash" class="clickable" loading="lazy">
-                <div class="painting-title">Elepha-Dash</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/serpent.jpg" data-full="images/portofolio/display/serpent.jpg" alt="Serpent" class="clickable" loading="lazy">
-                <div class="painting-title">Serpent</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/medusa.jpg" data-full="images/portofolio/display/medusa.jpg" alt="Medusa" class="clickable" loading="lazy">
-                <div class="painting-title">Medusa</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/owl_transition_5s.jpg" data-full="images/portofolio/display/owl_transition_5s.gif" alt="Owl" class="clickable" loading="lazy">
-                <div class="painting-title">Owl</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/rhino.jpg" data-full="images/portofolio/display/rhino.jpg" alt="Rhino" class="clickable" loading="lazy">
-                <div class="painting-title">Rhino</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/art_1.jpg" data-full="images/portofolio/display/art_1.jpg" alt="Somewhere 1884" class="clickable" loading="lazy">
-                <div class="painting-title">Somewhere 1884</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/art_2.jpg" data-full="images/portofolio/display/art_2.jpg" alt="Who?" class="clickable" loading="lazy">
-                <div class="painting-title">Who?</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/art_3.jpg" data-full="images/portofolio/display/art_3.jpg" alt="Misstress" class="clickable" loading="lazy">
-                <div class="painting-title">Misstress</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/art_4.jpg" data-full="images/portofolio/display/art_4.jpg" alt="Helmet" class="clickable" loading="lazy">
-                <div class="painting-title">Helmet</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/art_5.jpg" data-full="images/portofolio/display/art_5.jpg" alt="Dessert" class="clickable" loading="lazy">
-                <div class="painting-title">Dessert</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/art_6.jpg" data-full="images/portofolio/display/art_6.jpg" alt="Space Fruit" class="clickable" loading="lazy">
-                <div class="painting-title">Space Fruit</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="images/portofolio/thumbs/art_10.jpg" data-full="images/portofolio/display/art_10.jpg" alt="Paper-Plane Vaal" class="clickable" loading="lazy">
-                <div class="painting-title">Paper-Plane Vaal</div>
-            </div>
-
-
         </div>
+    </header>
+
+    <main>
+        <section class="works" aria-label="Selected works">
+            <div class="wrap">
+                <ul class="works__grid" id="works">
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/marinero.jpg?v=2" data-title="Marinero" aria-label="Marinero">
+                                <img src="images/portofolio/thumbs/marinero.jpg?v=2" alt="Portrait of a sailor with blue hair and mustache, painted in dense wavy patterns on wood." width="376" height="600" loading="eager" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Marinero</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/traveler_t.jpg" data-title="Traveler T" aria-label="Traveler T">
+                                <img src="images/portofolio/thumbs/traveler_t.jpg" alt="Abstract figure of a traveler composed of flowing ink-like lines and geometric fragments." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Traveler T</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/tear.jpg?v=2" data-title="Tear" aria-label="Tear">
+                                <img src="images/portofolio/thumbs/tear.jpg?v=2" alt="Abstract drawing with tear-shaped organic forms in blue and purple pattern work on dark paper." width="449" height="600" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Tear</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/little_fish.jpg" data-title="Little Fish" aria-label="Little Fish">
+                                <img src="images/portofolio/thumbs/little_fish.jpg" alt="Small fish-like creature drawn with intricate black and white abstract patterning." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Little Fish</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/prometheus.jpg" data-title="Prometheus" aria-label="Prometheus">
+                                <img src="images/portofolio/thumbs/prometheus.jpg" alt="Mythological figure of Prometheus rendered in dense abstract line work and fire motifs." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Prometheus</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/no_name_2.jpg" data-title="Unnamed System I" aria-label="Unnamed System I">
+                                <img src="images/portofolio/thumbs/no_name_2.jpg" alt="Abstract black and white drawing with circuit-like and organic intertwined forms." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Unnamed System I</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/no_name.jpg" data-title="Signal Without Source" aria-label="Signal Without Source">
+                                <img src="images/portofolio/thumbs/no_name.jpg" alt="Surreal abstract composition of fragmented oracle-like forms and neural patterns." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Signal Without Source</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/daphne.jpg" data-title="Daphne" aria-label="Daphne">
+                                <img src="images/portofolio/thumbs/daphne.jpg" alt="Mythological figure Daphne transforming into organic tree-like abstract forms." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Daphne</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/cyber_myth.jpg" data-title="Cyber Myth" aria-label="Cyber Myth">
+                                <img src="images/portofolio/thumbs/cyber_myth.jpg" alt="Abstract drawing merging mythological figures with cybernetic and machine-like structures." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Cyber Myth</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/heart.jpg?v=2" data-title="Heart" aria-label="Heart">
+                                <img src="images/portofolio/thumbs/heart.jpg?v=2" alt="Figurative abstract work with heart motif in blue, purple and yellow pattern on black paper." width="450" height="600" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Heart</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/hug.jpg?v=2" data-title="Hug" aria-label="Hug">
+                                <img src="images/portofolio/thumbs/hug.jpg?v=2" alt="Two abstract figures embracing, drawn in layered curved marks on dark paper." width="452" height="600" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Hug</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/anvil_vuetufu.jpg" data-title="Anvil Vuetufu" aria-label="Anvil Vuetufu">
+                                <img src="images/portofolio/thumbs/anvil_vuetufu.jpg" alt="Surreal abstract figure with anvil forms and volcanic organic structures." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Anvil Vuetufu</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/strange_sea.jpg" data-title="Strange Sea" aria-label="Strange Sea">
+                                <img src="images/portofolio/thumbs/strange_sea.jpg" alt="Abstract seascape with mythological and machine-like forms rising from dark waters." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Strange Sea</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/city_poison.jpg" data-title="City's Poison" aria-label="City's Poison">
+                                <img src="images/portofolio/thumbs/city_poison.jpg" alt="Urban abstract landscape with toxic, organic and architectural forms intertwined." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">City's Poison</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/hippo.jpg" data-title="Not a Happy Hippo" aria-label="Not a Happy Hippo">
+                                <img src="images/portofolio/thumbs/hippo.jpg" alt="Stylized hippo figure drawn with dense abstract patterning and expressive line work." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Not a Happy Hippo</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/elepha-dash.jpg" data-title="Elepha-Dash" aria-label="Elepha-Dash">
+                                <img src="images/portofolio/thumbs/elepha-dash.jpg" alt="Abstract elephant form in motion, composed of speed lines and organic pattern marks." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Elepha-Dash</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/serpent.jpg" data-title="Serpent" aria-label="Serpent">
+                                <img src="images/portofolio/thumbs/serpent.jpg" alt="Coiled serpent drawn in intricate black and white abstract line patterns." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Serpent</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/medusa.jpg" data-title="Medusa" aria-label="Medusa">
+                                <img src="images/portofolio/thumbs/medusa.jpg" alt="Medusa portrait with snake hair rendered in dense mythological abstract drawing." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Medusa</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/owl_transition_5s.gif" data-title="Owl" aria-label="Owl">
+                                <img src="images/portofolio/thumbs/owl_transition_5s.jpg" alt="Animated owl drawing transitioning between abstract pattern states." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Owl</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/rhino.jpg" data-title="Rhino" aria-label="Rhino">
+                                <img src="images/portofolio/thumbs/rhino.jpg" alt="Rhino head drawn with heavy abstract patterning and armored organic forms." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Rhino</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/art_1.jpg" data-title="Somewhere 1884" aria-label="Somewhere 1884">
+                                <img src="images/portofolio/thumbs/art_1.jpg" alt="Historical abstract landscape evoking the year 1884 with architectural and organic forms." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Somewhere 1884</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/art_2.jpg" data-title="Who?" aria-label="Who?">
+                                <img src="images/portofolio/thumbs/art_2.jpg" alt="Ambiguous abstract portrait asking identity through fragmented facial and machine forms." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Who?</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/art_3.jpg" data-title="Mistress" aria-label="Mistress">
+                                <img src="images/portofolio/thumbs/art_3.jpg" alt="Abstract female figure as mistress archetype with surreal organic and geometric forms." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Mistress</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/art_4.jpg" data-title="Helmet" aria-label="Helmet">
+                                <img src="images/portofolio/thumbs/art_4.jpg" alt="Abstract helmet form merging warrior imagery with machine and organic structures." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Helmet</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/art_5.jpg" data-title="Desert" aria-label="Desert">
+                                <img src="images/portofolio/thumbs/art_5.jpg" alt="Abstract desert landscape with sparse organic forms and vast negative space." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Desert</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/art_6.jpg" data-title="Space Fruit" aria-label="Space Fruit">
+                                <img src="images/portofolio/thumbs/art_6.jpg" alt="Surreal fruit forms floating in cosmic abstract space with organic patterning." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Space Fruit</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/art_10.jpg" data-title="Paper-Plane Vaal" aria-label="Paper-Plane Vaal">
+                                <img src="images/portofolio/thumbs/art_10.jpg" alt="Abstract paper plane form over a Vaal-inspired landscape of rivers and geometric shapes." width="600" height="463" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__label">Paper-Plane Vaal</figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="contact">
+        <div class="wrap">
+            <p class="contact__text">For gallery inquiries, collaborations, or commissions</p>
+            <a class="contact__email" href="mailto:alexandrosfrang@gmail.com">alexandrosfrang@gmail.com</a>
+        </div>
+    </footer>
+
+    <div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-label="Artwork">
+        <button type="button" class="viewer__close" id="viewer-close" aria-label="Close">&times;</button>
+        <img class="viewer__img" id="viewer-img" src="" alt="">
+        <p class="viewer__caption" id="viewer-caption"></p>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const images = document.querySelectorAll(".gallery .clickable");
-            const galleryContainer = document.querySelector(".gallery-container");
+            var viewer = document.getElementById("viewer");
+            var viewerImg = document.getElementById("viewer-img");
+            var viewerCaption = document.getElementById("viewer-caption");
+            var viewerClose = document.getElementById("viewer-close");
+            var lastTrigger = null;
 
-            // Performance optimization: throttle resize and scroll events
-            let resizeTimeout;
-            let scrollTimeout;
-
-            function throttle(func, delay) {
-                let timeoutId;
-                let lastExecTime = 0;
-                return function (...args) {
-                    const currentTime = Date.now();
-                    
-                    if (currentTime - lastExecTime > delay) {
-                        func.apply(this, args);
-                        lastExecTime = currentTime;
-                    } else {
-                        clearTimeout(timeoutId);
-                        timeoutId = setTimeout(() => {
-                            func.apply(this, args);
-                            lastExecTime = Date.now();
-                        }, delay - (currentTime - lastExecTime));
-                    }
-                };
+            function openViewer(trigger) {
+                var img = trigger.querySelector("img");
+                lastTrigger = trigger;
+                viewerImg.src = trigger.dataset.full;
+                viewerImg.alt = img.alt;
+                viewerCaption.textContent = trigger.dataset.title;
+                viewer.hidden = false;
+                document.body.style.overflow = "hidden";
+                viewerClose.focus();
             }
 
-            // Create white connecting line
-            const line = document.createElement("div");
-            line.classList.add("white-line");
-            galleryContainer.appendChild(line);
-
-            function updateLine() {
-                if (images.length < 2) return;
-
-                let prevRect = images[0].getBoundingClientRect();
-                let path = "";
-
-                for (let i = 1; i < images.length; i++) {
-                    let currRect = images[i].getBoundingClientRect();
-
-                    let startX = prevRect.left + prevRect.width / 2;
-                    let startY = prevRect.bottom + window.scrollY;
-                    let endX = currRect.left + currRect.width / 2;
-                    let endY = currRect.top + window.scrollY;
-
-                    path += `M ${startX},${startY} L ${endX},${endY} `;
-
-                    prevRect = currRect;
-                }
-
-                const svgNS = "http://www.w3.org/2000/svg";
-                let svg = document.querySelector("svg.white-line-svg");
-
-                if (!svg) {
-                    svg = document.createElementNS(svgNS, "svg");
-                    svg.setAttribute("class", "white-line-svg");
-                    svg.setAttribute("width", "100%");
-                    svg.setAttribute("height", "100%");
-                    svg.style.position = "absolute";
-                    svg.style.top = "0";
-                    svg.style.left = "0";
-                    svg.style.zIndex = "-1";
-                    svg.style.pointerEvents = "none";
-                    galleryContainer.appendChild(svg);
-                }
-
-                let pathElement = svg.querySelector("path");
-
-                if (!pathElement) {
-                    pathElement = document.createElementNS(svgNS, "path");
-                    pathElement.setAttribute("stroke", "white");
-                    pathElement.setAttribute("stroke-width", "3");
-                    pathElement.setAttribute("fill", "none");
-                    pathElement.setAttribute("opacity", "0.8");
-                    svg.appendChild(pathElement);
-                }
-
-                pathElement.setAttribute("d", path);
+            function closeViewer() {
+                viewer.hidden = true;
+                viewerImg.src = "";
+                document.body.style.overflow = "";
+                if (lastTrigger) lastTrigger.focus();
             }
 
-            // Throttled event listeners for better performance
-            const throttledUpdateLine = throttle(updateLine, 16); // ~60fps
+            document.querySelectorAll(".work__open").forEach(function (btn) {
+                btn.addEventListener("click", function () { openViewer(btn); });
+            });
 
-            window.addEventListener("scroll", throttledUpdateLine, { passive: true });
-            window.addEventListener("resize", throttledUpdateLine, { passive: true });
-            
-            // Initial line update
-            updateLine();
+            viewerClose.addEventListener("click", closeViewer);
+            viewer.addEventListener("click", function (e) {
+                if (e.target === viewer) closeViewer();
+            });
+            document.addEventListener("keydown", function (e) {
+                if (!viewer.hidden && e.key === "Escape") closeViewer();
+            });
 
-            // Enhanced image click handler with better accessibility
-            images.forEach((img, index) => {
-                // Fallback: if thumb fails (e.g. stale cache), try full display image
-                img.addEventListener("error", function onThumbError() {
-                    const full = img.dataset.full;
-                    if (full && img.src !== full && !img.dataset.fallbackTried) {
+            document.querySelectorAll(".work__open img").forEach(function (img) {
+                img.addEventListener("error", function () {
+                    var btn = img.closest(".work__open");
+                    var full = btn && btn.dataset.full;
+                    if (full && img.src.indexOf(full) === -1 && !img.dataset.fallbackTried) {
                         img.dataset.fallbackTried = "1";
                         img.src = full;
                     }
                 }, { once: true });
-
-                // Add keyboard accessibility
-                img.setAttribute('tabindex', '0');
-                img.setAttribute('role', 'button');
-                img.setAttribute('aria-label', `View artwork ${index + 1} in full size`);
-
-                function openPopup() {
-                    const popup = document.createElement("div");
-                    popup.classList.add("popup-overlay");
-                    popup.setAttribute('role', 'dialog');
-                    popup.setAttribute('aria-modal', 'true');
-                    popup.setAttribute('aria-label', 'Artwork viewer');
-                    
-                    popup.innerHTML = `
-                        <div class="popup-content">
-                            <span class="close-btn" role="button" aria-label="Close artwork viewer">&times;</span>
-                            <img src="${img.dataset.full || img.src}" alt="Expanded Artwork - ${img.alt}">
-                        </div>
-                    `;
-                    
-                    document.body.appendChild(popup);
-                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-
-                    const closePopup = () => {
-                        popup.remove();
-                        document.body.style.overflow = '';
-                        img.focus(); // Return focus to the clicked image
-                    };
-
-                    // Close button event
-                    popup.querySelector(".close-btn").addEventListener("click", closePopup);
-
-                    // Click outside to close
-                    popup.addEventListener("click", function (event) {
-                        if (event.target === popup) {
-                            closePopup();
-                        }
-                    });
-
-                    // Keyboard navigation
-                    popup.addEventListener("keydown", function (event) {
-                        if (event.key === 'Escape') {
-                            closePopup();
-                        }
-                    });
-
-                    // Focus the close button for keyboard users
-                    popup.querySelector(".close-btn").focus();
-                }
-
-                // Click event
-                img.addEventListener("click", openPopup);
-
-                // Keyboard event
-                img.addEventListener("keydown", function (event) {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        openPopup();
-                    }
-                });
-            });
-
-            // Lazy loading for images (if not already loaded)
-            if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            if (img.dataset.src) {
-                                img.src = img.dataset.src;
-                                img.removeAttribute('data-src');
-                                observer.unobserve(img);
-                            }
-                        }
-                    });
-                });
-
-                images.forEach(img => {
-                    if (img.dataset.src) {
-                        imageObserver.observe(img);
-                    }
-                });
-            }
-
-            // Handle orientation change
-            window.addEventListener('orientationchange', function() {
-                setTimeout(updateLine, 100); // Small delay to ensure layout is updated
             });
         });
     </script>
