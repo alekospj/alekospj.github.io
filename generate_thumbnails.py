@@ -7,6 +7,7 @@ Usage (run from project root):
     python generate_thumbnails.py
 
 Output folders:
+    images/portofolio/originals/ — full-resolution source files (PNG, JPG, GIF)
     images/portofolio/thumbs/   — 600px max, ~30-80 KB  (used in gallery grid)
     images/portofolio/display/  — 1500px max, ~200-400 KB (used in popup lightbox)
 """
@@ -21,9 +22,9 @@ except ImportError:
     print("Pillow not found. Run:  pip install Pillow")
     raise SystemExit(1)
 
-SOURCE_DIR = Path("images/portofolio")
-THUMB_DIR  = SOURCE_DIR / "thumbs"
-DISPLAY_DIR = SOURCE_DIR / "display"
+SOURCE_DIR = Path("images/portofolio/originals")
+THUMB_DIR  = Path("images/portofolio/thumbs")
+DISPLAY_DIR = Path("images/portofolio/display")
 
 THUMB_MAX    = 600    # px
 DISPLAY_MAX  = 1500   # px
@@ -61,8 +62,9 @@ def to_rgb(img: Image.Image) -> Image.Image:
 
 
 def process():
-    THUMB_DIR.mkdir(exist_ok=True)
-    DISPLAY_DIR.mkdir(exist_ok=True)
+    SOURCE_DIR.mkdir(parents=True, exist_ok=True)
+    THUMB_DIR.mkdir(parents=True, exist_ok=True)
+    DISPLAY_DIR.mkdir(parents=True, exist_ok=True)
 
     supported = {".jpg", ".jpeg", ".png", ".gif"}
     results = []
