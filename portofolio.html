@@ -140,13 +140,35 @@
             vertical-align: middle;
         }
 
-        .work__label {
+        .work__caption {
             margin: 0.875rem 0 0;
+        }
+
+        .work__title {
+            display: block;
             font-family: var(--serif);
             font-size: 0.9375rem;
             font-weight: 400;
             letter-spacing: 0.01em;
             color: var(--ink);
+            line-height: 1.4;
+        }
+
+        .work__medium,
+        .work__size {
+            display: block;
+            margin-top: 0.25rem;
+            font-family: var(--sans);
+            font-size: 0.6875rem;
+            font-weight: 400;
+            line-height: 1.55;
+            letter-spacing: 0.04em;
+            color: var(--muted);
+        }
+
+        .work__size {
+            margin-top: 0.125rem;
+            font-variant-numeric: tabular-nums;
         }
 
         /* ── Lightbox ── */
@@ -197,8 +219,20 @@
             margin: 1.25rem 0 0;
             font-family: var(--serif);
             font-size: 0.9375rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);
             letter-spacing: 0.02em;
+            text-align: center;
+            line-height: 1.55;
+        }
+
+        .viewer__caption-meta {
+            display: block;
+            margin-top: 0.35rem;
+            font-family: var(--sans);
+            font-size: 0.6875rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            color: rgba(255, 255, 255, 0.45);
         }
 
         /* ── Footer ── */
@@ -261,7 +295,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/calma.jpg" data-title="Calma" aria-label="Calma">
                                 <img src="images/portofolio/thumbs/calma.jpg" alt="Circular portrait of a figure with pipe and purple smoke, drawn in dense blue and green swirling line patterns." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Calma</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Calma</span>
+                                <span class="work__medium">Acrylic on Metal 2026</span>
+                                <span class="work__size">55 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -269,7 +307,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/marinero_2.jpg?v=4" data-title="Marinero" aria-label="Marinero">
                                 <img src="images/portofolio/thumbs/marinero_2.jpg?v=4" alt="Portrait of a sailor with blue hair and mustache, painted in dense wavy patterns on wood." width="450" height="600" loading="eager" decoding="async">
                             </button>
-                            <figcaption class="work__label">Marinero</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Marinero</span>
+                                <span class="work__medium">Acrylic on Wood 2026</span>
+                                <span class="work__size">48 × 30 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -277,7 +319,23 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/traveler_t.jpg?v=4" data-title="Traveler T" aria-label="Traveler T">
                                 <img src="images/portofolio/thumbs/traveler_t.jpg?v=4" alt="Abstract figure of a traveler composed of flowing ink-like lines and geometric fragments." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Traveler T</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Traveler T</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2026</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure class="work">
+                            <button type="button" class="work__open" data-full="images/portofolio/display/wine_bank_painting.jpg?v=1" data-title="wineBANK Zurich" aria-label="wineBANK Zurich">
+                                <img src="images/portofolio/thumbs/wine_bank_painting.jpg?v=1" alt="Abstract painting created for wineBANK Zurich." width="450" height="600" loading="lazy" decoding="async">
+                            </button>
+                            <figcaption class="work__caption">
+                                <span class="work__title">wineBANK Zurich</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2026</span>
+                                <span class="work__size">105 × 85 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -285,7 +343,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/tear_2.jpg" data-title="Tear" aria-label="Tear">
                                 <img src="images/portofolio/thumbs/tear_2.jpg" alt="Abstract drawing with tear-shaped organic forms in blue and purple pattern work on dark paper." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Tearidio</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Tearidio</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2026</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -293,7 +355,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/medusa.jpg?v=7" data-title="Medusa" aria-label="Medusa">
                                 <img src="images/portofolio/thumbs/medusa.jpg?v=7" alt="Jellyfish drawn in intricate white line patterns on black paper." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Medusa</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Medusa</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2025</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -301,7 +367,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/little_fish.jpg?v=1" data-title="Little Fish" aria-label="Little Fish">
                                 <img src="images/portofolio/thumbs/little_fish.jpg?v=1" alt="Small fish drawn in intricate white line patterns on black paper." width="600" height="450" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Little Smart Fish</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Little Smart Fish</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2026</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -309,7 +379,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/prometheus.jpg?v=4" data-title="Prometheus" aria-label="Prometheus">
                                 <img src="images/portofolio/thumbs/prometheus.jpg?v=4" alt="Mythological figure of Prometheus rendered in dense abstract line work and fire motifs." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Prometheus</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Prometheus</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2025</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -317,7 +391,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/no_name.jpg?v=6" data-title="Signal Without Source" aria-label="Signal Without Source">
                                 <img src="images/portofolio/thumbs/no_name.jpg?v=6" alt="Surreal abstract composition of fragmented oracle-like forms and neural patterns." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Signal Without Source</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Signal Without Source</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2026</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -325,7 +403,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/daphne.jpg?v=5" data-title="Daphne" aria-label="Daphne">
                                 <img src="images/portofolio/thumbs/daphne.jpg?v=5" alt="Mythological figure Daphne transforming into organic tree-like abstract forms." width="600" height="450" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Daphne</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Daphne</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2026</span>
+                                <span class="work__size">55 × 75 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -333,7 +415,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/cyber_myth.jpg?v=8" data-title="Cyber Myth" aria-label="Cyber Myth">
                                 <img src="images/portofolio/thumbs/cyber_myth.jpg?v=8" alt="Abstract drawing merging mythological figures with cybernetic and machine-like structures." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Cyber Myth</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Cyber Myth</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2026</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -341,7 +427,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/heart_2.jpg?v=4" data-title="Heart" aria-label="Heart">
                                 <img src="images/portofolio/thumbs/heart_2.jpg?v=4" alt="Figurative abstract work with heart motif in blue, purple and yellow pattern on black paper." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Bydirection</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Bydirection</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2026</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -349,7 +439,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/hug_2.jpg" data-title="Hug" aria-label="Hug">
                                 <img src="images/portofolio/thumbs/hug_2.jpg" alt="Two abstract figures embracing, drawn in layered curved marks on dark paper." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">+ Thesis</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">+ Thesis</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2026</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
 
@@ -358,7 +452,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/anvil_vuetufu.jpg?v=2" data-title="Anvil Vuetufu" aria-label="Anvil Vuetufu">
                                 <img src="images/portofolio/thumbs/anvil_vuetufu.jpg?v=2" alt="Surreal abstract figure with anvil forms and volcanic organic structures." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Anvil of Vuetufu</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Anvil of Vuetufu</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2025</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -366,7 +464,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/strange_sea.jpg?v=4" data-title="Strange Sea" aria-label="Strange Sea">
                                 <img src="images/portofolio/thumbs/strange_sea.jpg?v=4" alt="Abstract seascape with mythological and machine-like forms rising from dark waters." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Strange Sea</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Strange Sea</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2025</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -374,7 +476,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/city_poison.jpg?v=4" data-title="City's Poison" aria-label="City's Poison">
                                 <img src="images/portofolio/thumbs/city_poison.jpg?v=4" alt="Urban abstract landscape with toxic, organic and architectural forms intertwined." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">City's Poison</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">City's Poison</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2025</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -382,7 +488,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/hippo.jpg?v=4" data-title="Not a Happy Hippo" aria-label="Not a Happy Hippo">
                                 <img src="images/portofolio/thumbs/hippo.jpg?v=4" alt="Stylized hippo figure drawn with dense abstract patterning and expressive line work." width="600" height="450" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Not a Happy Hippo</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Not a Happy Hippo</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2025</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -390,7 +500,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/elepha-dash.jpg?v=4" data-title="Elepha-Dash" aria-label="Elepha-Dash">
                                 <img src="images/portofolio/thumbs/elepha-dash.jpg?v=4" alt="Abstract elephant form in motion, composed of speed lines and organic pattern marks." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Elepha-Dash</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Elepha-Dash</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2025</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -398,7 +512,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/serpent.jpg?v=5" data-title="Serpent" aria-label="Serpent">
                                 <img src="images/portofolio/thumbs/serpent.jpg?v=5" alt="Coiled serpent drawn in intricate black and white abstract line patterns." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Serpent</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Serpent</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2025</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -406,7 +524,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/data_anomaly.jpg?v=1" data-title="Data Anomaly" aria-label="Data Anomaly">
                                 <img src="images/portofolio/thumbs/data_anomaly.jpg?v=1" alt="Abstract figure with fragmented data-like forms and dense organic line patterns." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Data Anomaly</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Data Anomaly</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2026</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -414,7 +536,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/owl_transition_5s.jpg?v=5" data-title="Owl" aria-label="Owl">
                                 <img src="images/portofolio/thumbs/owl_transition_5s.jpg?v=5" alt="Animated owl drawing transitioning between abstract pattern states." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Night Flights</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Night Flights</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2026</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -422,7 +548,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/rhino.jpg?v=4" data-title="Rhino" aria-label="Rhino">
                                 <img src="images/portofolio/thumbs/rhino.jpg?v=4" alt="Rhino head drawn with heavy abstract patterning and armored organic forms." width="600" height="450" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Spino-Rhino</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Spino-Rhino</span>
+                                <span class="work__medium">Acrylic on compressed cotton, 2025</span>
+                                <span class="work__size">75 × 55 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -430,7 +560,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/art_1.jpg?v=2" data-title="Somewhere 1884" aria-label="Somewhere 1884">
                                 <img src="images/portofolio/thumbs/art_1.jpg?v=2" alt="Historical abstract landscape evoking the year 1884 with architectural and organic forms." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Somewhere 1884</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Somewhere 1884</span>
+                                <span class="work__medium">Pen on paper, 2024</span>
+                                <span class="work__size">29.7 × 21 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -438,7 +572,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/art_2.jpg?v=2" data-title="Who?" aria-label="Who?">
                                 <img src="images/portofolio/thumbs/art_2.jpg?v=2" alt="Ambiguous abstract portrait asking identity through fragmented facial and machine forms." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Who?</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Who?</span>
+                                <span class="work__medium">Pen on paper, 2024</span>
+                                <span class="work__size">29.7 × 21 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -446,7 +584,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/art_3.jpg?v=2" data-title="Mistress" aria-label="Mistress">
                                 <img src="images/portofolio/thumbs/art_3.jpg?v=2" alt="Abstract female figure as mistress archetype with surreal organic and geometric forms." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Mistress</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Mistress</span>
+                                <span class="work__medium">Pen on paper, 2024</span>
+                                <span class="work__size">29.7 × 21 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -454,7 +596,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/art_4.jpg?v=2" data-title="Helmet" aria-label="Helmet">
                                 <img src="images/portofolio/thumbs/art_4.jpg?v=2" alt="Abstract helmet form merging warrior imagery with machine and organic structures." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Helmet</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Helmet</span>
+                                <span class="work__medium">Pen on paper, 2024</span>
+                                <span class="work__size">29.7 × 21 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -462,7 +608,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/art_5.jpg?v=2" data-title="Desert" aria-label="Desert">
                                 <img src="images/portofolio/thumbs/art_5.jpg?v=2" alt="Abstract desert landscape with sparse organic forms and vast negative space." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Desert</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Desert</span>
+                                <span class="work__medium">Pen on paper, 2024</span>
+                                <span class="work__size">29.7 × 21 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                     <li>
@@ -470,7 +620,11 @@
                             <button type="button" class="work__open" data-full="images/portofolio/display/art_6.jpg?v=2" data-title="Space Fruit" aria-label="Space Fruit">
                                 <img src="images/portofolio/thumbs/art_6.jpg?v=2" alt="Surreal fruit forms floating in cosmic abstract space with organic patterning." width="450" height="600" loading="lazy" decoding="async">
                             </button>
-                            <figcaption class="work__label">Space Fruit</figcaption>
+                            <figcaption class="work__caption">
+                                <span class="work__title">Space Fruit</span>
+                                <span class="work__medium">Pen on paper, 2024</span>
+                                <span class="work__size">29.7 × 21 cm</span>
+                            </figcaption>
                         </figure>
                     </li>
                 </ul>
@@ -501,10 +655,16 @@
 
             function openViewer(trigger) {
                 var img = trigger.querySelector("img");
+                var caption = trigger.closest("figure").querySelector(".work__caption");
+                var title = caption.querySelector(".work__title").textContent;
+                var medium = caption.querySelector(".work__medium").textContent;
+                var size = caption.querySelector(".work__size").textContent;
                 lastTrigger = trigger;
                 viewerImg.src = trigger.dataset.full;
                 viewerImg.alt = img.alt;
-                viewerCaption.textContent = trigger.dataset.title;
+                viewerCaption.innerHTML =
+                    title +
+                    '<span class="viewer__caption-meta">' + medium + "<br>" + size + "</span>";
                 viewer.hidden = false;
                 document.body.style.overflow = "hidden";
                 viewerClose.focus();
