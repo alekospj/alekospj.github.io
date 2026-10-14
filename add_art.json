@@ -1,0 +1,71 @@
+{
+  "purpose": "Instructions for AI agents (and humans) on how to add a new artwork to the portfolio at portofolio.html. Follow these steps exactly so new entries match the existing ones.",
+  "when_user_says": "The user drops a new image into images/portofolio/display/ (often a PNG with a UUID-style name, untracked in git) and gives a title, medium/year and dimensions.",
+  "inputs_needed": {
+    "title": "Display title exactly as the user writes it, e.g. 'D. Dotl'",
+    "medium_and_year": "e.g. 'Acrylic on fabric, 2026'",
+    "size_cm": "height × width in cm, e.g. '109 × 69 cm' (use the × character, as the user gives it, height first)",
+    "if_missing": "Ask the user for any missing field. Do not invent title, medium or dimensions."
+  },
+  "steps": [
+    {
+      "step": 1,
+      "name": "Look at the image",
+      "detail": "Read the image file to write accurate alt text."
+    },
+    {
+      "step": 2,
+      "name": "Pick a filename",
+      "detail": "Lowercase, spaces and dots become underscores, only a-z 0-9 _ - allowed, .jpg extension. 'D. Dotl' -> d_dotl.jpg. Use the same filename in display/ and thumbs/."
+    },
+    {
+      "step": 3,
+      "name": "Create the display and thumbnail JPGs",
+      "detail": "Display: full image as JPEG, quality 85, max 1500px on the long side (~200-700 KB). Thumb: max 600px on the long side, JPEG quality 80 (~100-140 KB). Convert PNG to JPG. Then delete the original UUID-named PNG from display/.",
+      "commands": [
+        "cd images/portofolio",
+        "sips -s format jpeg -s formatOptions 85 display/<SOURCE>.PNG --out display/<name>.jpg",
+        "sips -s format jpeg -s formatOptions 80 -Z 600 display/<SOURCE>.PNG --out thumbs/<name>.jpg",
+        "rm display/<SOURCE>.PNG"
+      ],
+      "alternative": "generate_thumbnails.py does the same with Pillow, but it reads from images/portofolio/originals/ (which currently does not exist) and caps display at 1500px."
+    },
+    {
+      "step": 3.5,
+      "name": "Do not commit .DS_Store files",
+      "detail": "Ignore .DS_Store changes in git status. Never stage them."
+    },
+    {
+      "step": 4,
+      "name": "Add the HTML entry",
+      "detail": "In portofolio.html, insert a new <li> as the FIRST child of <ul class=\"works__grid\" id=\"works\"> so the newest work shows first. Copy the template below.",
+      "template": "<li>\n    <figure class=\"work\">\n        <button type=\"button\" class=\"work__open\" data-full=\"images/portofolio/display/{file}\" data-title=\"{title}\" aria-label=\"{title}\">\n            <img src=\"images/portofolio/thumbs/{file}\" alt=\"{alt}\" width=\"600\" height=\"600\" loading=\"eager\" decoding=\"async\">\n        </button>\n        <figcaption class=\"work__caption\">\n            <span class=\"work__title\">{title}</span>\n            <span class=\"work__medium\">{medium_and_year}</span>\n            <span class=\"work__size\">{size_cm}</span>\n        </figcaption>\n    </figure>\n</li>",
+      "notes": [
+        "Indentation: 20 spaces for <li>, matching the existing entries.",
+        "alt text: one sentence describing the artwork visually (form, colors, material), ending with a period.",
+        "Keep width=\"600\" height=\"600\" and loading=\"eager\" like the existing entries.",
+        "Medium wording in existing entries varies slightly; prefer the form 'Acrylic on fabric, 2026'."
+      ]
+    },
+    {
+      "step": 5,
+      "name": "Verify",
+      "detail": "Confirm both JPGs exist, the paths in the HTML match, and git status shows only the new files plus portofolio.html (apart from .DS_Store)."
+    },
+    {
+      "step": 6,
+      "name": "Commit only if asked",
+      "detail": "Do not commit or push unless the user asks. Previous commit style: 'Add <title> to portfolio' with a one-line body."
+    }
+  ],
+  "file_locations": {
+    "page": "portofolio.html",
+    "display_images": "images/portofolio/display/",
+    "thumbnails": "images/portofolio/thumbs/",
+    "thumbnail_script": "generate_thumbnails.py"
+  },
+  "user_preferences": {
+    "ordering": "Newest first (top of the grid).",
+    "format": "JPG for both display and thumbnail, descriptive snake_case filenames."
+  }
+}
