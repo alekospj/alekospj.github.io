@@ -37,14 +37,16 @@
     },
     {
       "step": 4,
-      "name": "Add the HTML entry",
-      "detail": "In portofolio.html, insert a new <li> as the FIRST child of <ul class=\"works__grid\" id=\"works\"> so the newest work shows first. Copy the template below.",
-      "template": "<li>\n    <figure class=\"work\">\n        <button type=\"button\" class=\"work__open\" data-full=\"images/portofolio/display/{file}\" data-title=\"{title}\" aria-label=\"{title}\">\n            <img src=\"images/portofolio/thumbs/{file}\" alt=\"{alt}\" width=\"600\" height=\"600\" loading=\"eager\" decoding=\"async\">\n        </button>\n        <figcaption class=\"work__caption\">\n            <span class=\"work__title\">{title}</span>\n            <span class=\"work__medium\">{medium_and_year}</span>\n            <span class=\"work__size\">{size_cm}</span>\n        </figcaption>\n    </figure>\n</li>",
+      "name": "Add the HTML entry to the right material section",
+      "detail": "portofolio.html is split into <section class=\"works\" id=\"...\"> blocks by MATERIAL: #dotl, titled 'DOTL' (EVERYTHING on fabric, acrylic on fabric or plain 'Fabric', whatever the title), #cotton (compressed cotton), #wood-metal (wood, metal), #paper (pen on paper, always LAST). Insert the new <li> as the FIRST child of that section's <ul class=\"works__grid\"> (newest first), then bump the 'N works' counter in that section's header. Nothing else needs updating: the lightbox order, prev/next, 'x / N' counter, deep-link URL (#<id>) and schema.org VisualArtwork data are all built from the entries at runtime.",
+      "template": "<li class=\"work-item\" id=\"{slug}\">\n    <figure class=\"work\">\n        <button type=\"button\" class=\"work__open\" data-full=\"images/portofolio/display/{file}\" data-title=\"{title}\" aria-label=\"{title}\">\n            <img src=\"images/portofolio/thumbs/{file}\" alt=\"{alt}\" width=\"{thumb_w}\" height=\"{thumb_h}\" loading=\"lazy\" decoding=\"async\">\n        </button>\n        <figcaption class=\"work__caption\">\n            <span class=\"work__title\">{title}</span>\n            <span class=\"work__medium\">{medium_and_year}</span>\n            <span class=\"work__size\">{size_cm}</span>\n        </figcaption>\n    </figure>\n</li>",
       "notes": [
-        "Indentation: 20 spaces for <li>, matching the existing entries.",
+        "Indentation: 24 spaces for <li>, matching the existing entries.",
+        "slug = title lowercased, every run of non a-z0-9 characters replaced by '-', trimmed. 'D. Dotl' -> d-dotl. Must be unique on the page; it is the shareable link (portofolio.html#d-dotl).",
+        "thumb_w / thumb_h = the REAL pixel size of the thumbnail (check with: sips -g pixelWidth -g pixelHeight <file>). The masonry grid uses them to reserve the right space. Do not set 600x600 for non-square images.",
         "alt text: one sentence describing the artwork visually (form, colors, material), ending with a period.",
-        "Keep width=\"600\" height=\"600\" and loading=\"eager\" like the existing entries.",
-        "Medium wording in existing entries varies slightly; prefer the form 'Acrylic on fabric, 2026'."
+        "Caption format: medium line like 'Acrylic on fabric, 2026' (must contain the 4-digit year, it feeds the structured data); size line like '109 × 69 cm' (height × width, with the × character).",
+        "A material that has no section yet (e.g. ceramics): add a new <section class=\"works\" id=\"ceramics\"> before the paper section with the same header markup, plus a link <a href=\"#ceramics\"> in <nav class=\"sections-nav\">."
       ]
     },
     {
@@ -62,10 +64,13 @@
     "page": "portofolio.html",
     "display_images": "images/portofolio/display/",
     "thumbnails": "images/portofolio/thumbs/",
-    "thumbnail_script": "generate_thumbnails.py"
+    "thumbnail_script": "generate_thumbnails.py",
+    "sections": "Pieces are grouped by material in portofolio.html: dotl (all fabric works), cotton, wood-metal, paper (last)."
   },
   "user_preferences": {
-    "ordering": "Newest first (top of the grid).",
-    "format": "JPG for both display and thumbnail, descriptive snake_case filenames."
+    "ordering": "Grouped by material; within a section newest first. 'Pen on paper' stays as the last, separate section.",
+    "format": "JPG for both display and thumbnail, descriptive snake_case filenames.",
+    "look": "White gallery-wall background (#fefefe, matches the near-white padding baked into the JPGs), serif titles, violet accent. Do not switch to a dark or cream background without asking: the images have white margins.",
+    "sharing": "Page has Open Graph/Twitter tags pointing at images/portofolio/display/d_dotl.jpg; if the user asks for a different cover image, change og:image, og:image:alt and twitter:image in the <head>."
   }
 }
